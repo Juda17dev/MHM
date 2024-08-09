@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\TypeStatutEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ImmeubleRequest extends FormRequest
+class VisiteurRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,16 +24,17 @@ class ImmeubleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'libelle' => ['required','unique:immeubles,libelle','max:127'],
-            'adresse' => ['required','unique:immeubles,adresse','max:127']
+            'nom' => ['required','max:127'],
+            'prenom' => ['required','max:127'],
+            'identite' => ['required','max:127']
         ];
     }
 
     public function attributes() : array {
         return [
-            'libelle' => 'le nom de l\'immeuble',
-            'adresse' => "Cette adresse"
+            'nom' => "Le nom du visiteur",
+            'prenom' => "Le prenom du visiteur",
+            'identite' => "L'identité du visiteur"
         ];
     }
-
 }

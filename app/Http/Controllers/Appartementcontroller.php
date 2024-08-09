@@ -30,18 +30,9 @@ class Appartementcontroller extends Controller
         $appartement->libelle = $request->libelle;
         $appartement->immeuble_id = $request->immeuble;
         $appartement->save();
-        return redirect('appartements');
+        return to_route('appartements.index');
     }
 
-    public function edit($id):View
-    {
-        $appartement = Appartement::find($id);
-        $immeubles = Immeuble::all();
-        return view('appartements.edit')->with([
-            'appartement' => $appartement,
-            'immeubles' => $immeubles
-        ]);
-    }
     public function show($id):View
     {
         $appartement = Appartement::find($id);
@@ -51,7 +42,17 @@ class Appartementcontroller extends Controller
             'immeubles' => $immeubles
         ]);
     }
-
+    
+    public function edit($id):View
+    {
+        $appartement = Appartement::find($id);
+        $immeubles = Immeuble::all();
+        return view('appartements.edit')->with([
+            'appartement' => $appartement,
+            'immeubles' => $immeubles
+        ]);
+    }
+    
     public function update($id, AppartementRequest $request)
     {
         $appartement = Appartement::find($id);
@@ -65,6 +66,6 @@ class Appartementcontroller extends Controller
     {
         $appartement = Appartement::find($id);
         $appartement->delete();
-        return redirect('appartements');
+        return to_route('appartements.index');
     }
 }

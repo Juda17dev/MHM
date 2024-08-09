@@ -3,6 +3,7 @@
 use App\Http\Controllers\Appartementcontroller;
 use App\Http\Controllers\Immeublecontroler;
 use App\Http\Controllers\Usercontroller;
+use App\Http\Controllers\Visiteurcontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +33,6 @@ Route:: resource('appartements',Appartementcontroller::class);
 
 
 Route:: resource('immeubles',Immeublecontroler::class);
+
+
+Route:: resource('visiteurs', Visiteurcontroller::class);

@@ -47,7 +47,7 @@ class Immeublecontroler extends Controller
         $immmeuble->libelle = $request->libelle;
         $immmeuble->adresse = $request->adresse;
         $immmeuble->update();
-        return redirect('immeubles');
+        return to_route('immeubles.index');
     }
 
     public function  destroy($id)

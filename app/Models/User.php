@@ -11,6 +11,9 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    
+    public final const AGENT = 1;
+    public final const LOCATAIRE = 2;
 
     /**
      * The attributes that are mass assignable.
@@ -56,4 +59,10 @@ class User extends Authenticatable
     public function immeubles(){
         return $this->hasMany(Immeuble::class);
     }
+
+    public function visiteur(){
+        return $this->hasMany(Visiteur::class);
+    }
+
+
 }

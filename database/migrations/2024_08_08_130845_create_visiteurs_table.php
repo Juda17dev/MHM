@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('identite');
-            $table->foreignId('locataire_id')->references('id')->on('users');
-            $table->foreignId('agent_id')->references('id')->on('users');
+            $table->foreignId('locataire_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('agent_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

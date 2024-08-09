@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Immeuble extends Model
 {
     use HasFactory;
-    
+
     protected $fillable =[
         'libelle',
         'user_id',
@@ -19,7 +19,7 @@ class Immeuble extends Model
         return $this->hasMany(Appartement::class);
     }
 
-    public function proprietaires(){
+    public function proprietaire(){
         return $this->belongsTo(User::class);
     }
 }

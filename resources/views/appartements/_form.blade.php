@@ -9,8 +9,7 @@
             <div class="col-sm-10">
                 <input type="text" name="libelle" class="form-control @error('libelle') is-invalid @enderror" placeholder="Designation" value="{{ old('libelle',$appartement) }}">
                 @error('libelle')
-                    <span class="error invalid-feedback
-                    ">{{ $message }}</span>
+                    <span class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
         </div>

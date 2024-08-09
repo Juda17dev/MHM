@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Appartement extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'libelle',
+        'immeuble_id'
+    ];
 
-    public function users(){
+    public function user(){
         return $this->hasOne(Appartement::class);
     }
 
-    public function immeubles(){
+    public function immeuble(){
         return $this->belongsTo(Immeuble::class);
     }
 }

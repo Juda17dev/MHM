@@ -1,5 +1,5 @@
 @extends('base', [
-    'title' => 'listes des immeubles',
+    'title' => 'listes des visiteurs',
 ])
 
 
@@ -28,10 +28,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-footer">
-                            <a href="{{ route('immeubles.create') }}" class="btn btn-info float-right">Ajouter</a>
+                            <a href="{{ route('visiteurs.create') }}" class="btn btn-info float-right">Ajouter</a>
                         </div>
                         <div class="card-header">
-                            <h3 class="card-title">Liste des immeubles</h3>
+                            <h3 class="card-title">Liste des visiteurs</h3>
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -51,23 +51,23 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Nom de l'immeuble</th>
-                                        <th>Adresse</th>
-                                        <th>Action</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>identite</th>
+                                        <th>Locataire</th>
+                                        <th>Agent</th>
+                                        <th>Statut</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($immeubles as $immeuble)
+                                    @foreach ($visiteurs as $visiteur)
                                         <tr>
-                                            <td>{{ $immeuble->libelle }}</td>
-                                            <td>{{ $immeuble->adresse }}</td>
-                                            <td>
-                                                <a href="{{ route('immeubles.edit',$immeuble) }}" class="btn btn-info float-right">Modifier</a>
-                                                <form method="POST" action="{{ route('immeubles.destroy',$immeuble) }}">
-                                                    @csrf @method('delete')
-                                                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                </form>
-                                            </td>
+                                            <td>{{ $visiteur->nom }}</td>
+                                            <td>{{ $visiteur->prenom }}</td>
+                                            <td>{{ $visiteur->identite }}</td>
+                                            <td>{{ $visiteur->locataire->nom.' '.$visiteur->agent->prenom }}</td>
+                                            <td>{{ $visiteur->agent->nom.' '.$visiteur->agent->prenom }}</td>
+                                            <td>{{ $visiteur->statut }}</td>
                                         </tr>
                                     @endforeach
 
@@ -76,7 +76,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <a href="{{ route('immeubles.create') }}" class="btn btn-info float-right">Ajouter</a>
+                            <a href="{{ route('visiteurs.create') }}" class="btn btn-info float-right">Ajouter</a>
                         </div>
                     </div>
                     <!-- /.card -->
