@@ -2,59 +2,27 @@
     'title' => 'listes des immeubles',
 ])
 
-
 @section('content')
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v1</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+
                     <div class="card">
                         <div class="card-footer">
                             <a href="{{ route('immeubles.create') }}" class="btn btn-info float-right">Ajouter</a>
                         </div>
                         <div class="card-header">
-                            <h3 class="card-title">Liste des immeubles</h3>
-
-                            <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right"
-                                        placeholder="Search">
-
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <h3 class="card-title text-lg"><i class="fas fa-city"></i>  Liste des immeubles</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-bordered table-hover">
+                            <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>Nom de l'immeuble</th>
                                         <th>Adresse</th>
-                                        <th>Action</th>
-                                    </tr>
+                                        <th style="width: 5px">Action</th </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($immeubles as $immeuble)
@@ -62,16 +30,42 @@
                                             <td>{{ $immeuble->libelle }}</td>
                                             <td>{{ $immeuble->adresse }}</td>
                                             <td>
-                                                <a href="{{ route('immeubles.edit',$immeuble) }}" class="btn btn-info float-right">Modifier</a>
-                                                <form method="POST" action="{{ route('immeubles.destroy',$immeuble) }}">
-                                                    @csrf @method('delete')
-                                                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                </form>
+                                                <div class="nav-item dropdown-menu-left " style="height: 2px;">
+                                                    <a class="nav-link" data-toggle="dropdown" href="#">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-xl-left">
+                                                        <a href="{{ route('immeubles.edit', $immeuble) }}"
+                                                            class="dropdown-item">
+                                                            <i class="fa fa-edit"></i> Modifier
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <form method="POST"
+                                                            action="{{ route('immeubles.destroy', $immeuble) }}"
+                                                            style="display: inline;">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="dropdown-item text-danger">
+                                                                <i class="fa fa-trash"></i> Supprimer
+                                                            </button>
+                                                        </form>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="{{ route('immeubles.show',$immeuble) }}" class="dropdown-item">
+                                                            <i class="fa fa-eye"></i> Détail
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Nom de l'immeuble</th>
+                                        <th>Adresse</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -81,19 +75,11 @@
                     </div>
                     <!-- /.card -->
                 </div>
+                <!-- /.col -->
             </div>
+            <!-- /.row -->
         </div>
+        <!-- /.container-fluid -->
     </section>
-@endsection
-
-@section('script')
-    <!-- jQuery -->
-    <script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('/dist/js/adminlte.min.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('/dist/js/demo.js') }}"></script>
 @endsection
 

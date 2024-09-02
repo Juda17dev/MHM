@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ImmeubleRequest;
+use App\Models\Appartement;
 use App\Models\Immeuble;
+use App\Models\User;
+use App\Models\Visiteur;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class Immeublecontroler extends Controller
 {
     public function index():View
     {
-        $immeubles = Immeuble::all();
+        $immeubles = Immeuble::query()->where('user_id',Auth::user()->id)->get();
         return view('immeubles.index')->with('immeubles' ,$immeubles);
     }
 
@@ -24,15 +28,28 @@ class Immeublecontroler extends Controller
         $immeuble = Immeuble::query()->create([
             'libelle' => $request->libelle,
             'adresse' => $request->adresse,
-            'user_id' => 1,
+            'user_id' => Auth::user()->id
         ]);
         return to_route('immeubles.index');
     }
 
-    public function show($id):View
+    public function show(Immeuble $immeuble):View
     {
-        $immeuble = Immeuble::find($id);
-        return view('immeubles.show')->with('immeuble',$immeuble);
+        $nbrappartement = Appartement::query()->where('immeuble_id', $immeuble->id)->count();
+        $nbragent = User::query()->where('role_id',User::AGENT)->where('immeuble_id', $immeuble->id)->count();
+        $nbrlocataire = User::query()->where('role_id',User::LOCATAIRE)->where('immeuble_id', $immeuble->id)->count();
+        // $nbrvisiteur = Visiteur::query()->where(, $immeuble->id)->count();
+        $agents = User::query()->where('role_id', User::AGENT)->where('immeuble_id', $immeuble->id)->get();
+        $appartements = Appartement::query()->where('immeuble_id', $immeuble->id)->get();
+        return view('immeubles.show')->with([
+            'immeuble' => $immeuble,
+            'appartements' => $appartements,
+            'agents' => $agents,
+            'nbrappartement' => $nbrappartement,
+            'nbragent' => $nbragent,
+            'nbrlocataire' => $nbrlocataire,
+            // 'nbrvisiteur' => $nbrvisiteur,
+        ]);
     }
 
     public function edit($id):View
@@ -41,19 +58,20 @@ class Immeublecontroler extends Controller
         return view('immeubles.edit')->with('immeuble',$immeuble);
     }
 
-    public function update($id, ImmeubleRequest $request)
+    public function update(ImmeubleRequest $request, Immeuble $immeuble)
     {
-        $immmeuble = Immeuble::find($id);
-        $immmeuble->libelle = $request->libelle;
-        $immmeuble->adresse = $request->adresse;
-        $immmeuble->update();
+        $immeuble->libelle = $request->libelle;
+        $immeuble->adresse = $request->adresse;
+        $immeuble->update();
         return to_route('immeubles.index');
     }
 
-    public function  destroy($id)
+    public function  destroy(Immeuble $immeuble)
     {
-        $immeuble = Immeuble::find($id);
+        if( $immeuble->appartements->isNotEmpty()){
+            return back();
+        }
         $immeuble->delete();
-        return redirect('immeubles');
+        return to_route('immeubles.index');
     }
 }

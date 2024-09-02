@@ -1,17 +1,6 @@
-@extends('base');
-
-@section('head')
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | General Form Elements</title>
-
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('../../plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('../../dist/css/adminlte.min.css') }}">
-@endsection
+@extends('base', [
+    'title' => 'Ajouter un utilisateur',
+]);
 
 @section('content')
     <div class="card card-info">
@@ -20,7 +9,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" method="POST">
+        <form class="form-horizontal" method="POST" action="{{ route('users.store') }}">
             @csrf
             <div class="card-body">
                 <div class="form-group row">
@@ -44,16 +33,37 @@
                 <div class="form-group row">
                     <label for="Tel" class="col-sm-2 col-form-label">Telephone</label>
                     <div class="col-sm-10">
-                        <input type="text" name="tel" class="form-control" placeholder="Téléphone">
+                        <input type="text" name="telephone" class="form-control" placeholder="Téléphone">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="Role" class="col-sm-2 col-form-label">Role</label>
+                    <label for="role" class="col-sm-2 col-form-label">Role</label>
                     <div class="col-sm-10">
-                        <select class="custom-select rounded-0">
-                            <option>Locataire</option>
-                            <option>Agent</option>
-                            <option>Value 3</option>
+                        <select class="custom-select rounded-0" name="role" id="role">
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->libelle }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row" id="immeuble-group">
+                    <label for="immeuble" class="col-sm-2 col-form-label">Immeuble</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select rounded-0" name="immeuble" id="immeuble">
+                            <option value="">Sélectionnez un immeuble</option>
+                            @foreach ($immeubles as $immeuble)
+                                <option value="{{ $immeuble->id }}">{{ $immeuble->libelle }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row d-none" id="appartement-group">
+                    <label for="appartement" class="col-sm-2 col-form-label">Appartement</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select rounded-0" name="appartement" id="appartement">
+                            <option value="">Sélectionnez un appartement</option>
                         </select>
                     </div>
                 </div>
@@ -71,23 +81,46 @@
                 <!-- /.card-footer -->
         </form>
     </div>
-@endsection
 
-@section('script')
-    <!-- jQuery -->
-    <script src="{{ asset('../../plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ asset('../../plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- bs-custom-file-input -->
-    <script src="{{ asset('../../plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('../../dist/js/adminlte.min.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('../../dist/js/demo.js') }}"></script>
-    <!-- Page specific script -->
     <script>
-        $(function() {
-            bsCustomFileInput.init();
+        document.addEventListener('DOMContentLoaded', function() {
+            const roleSelect = document.getElementById('role');
+            const immeubleGroup = document.getElementById('immeuble-group');
+            const appartementGroup = document.getElementById('appartement-group');
+            const immeubleSelect = document.getElementById('immeuble');
+            const appartementSelect = document.getElementById('appartement');
+            const appartementsData = @json($appartements);
+
+            // Ensure Immeuble is always visible by default
+            immeubleGroup.classList.remove('d-none');
+
+            roleSelect.addEventListener('change', function() {
+                const roleId = this.value;
+
+                // Reset Appartement field
+                appartementGroup.classList.add('d-none');
+                appartementSelect.innerHTML = '<option value="">Sélectionnez un appartement</option>';
+
+                // Show Appartement field if roleId is 2
+                if (roleId == 2) {
+                    appartementGroup.classList.remove('d-none');
+                }
+            });
+
+            immeubleSelect.addEventListener('change', function() {
+                const immeubleId = this.value;
+
+                // Filter apartments based on the selected Immeuble
+                appartementSelect.innerHTML = '<option value="">Sélectionnez un appartement</option>';
+                if (appartementsData[immeubleId]) {
+                    appartementsData[immeubleId].forEach(appartement => {
+                        const option = document.createElement('option');
+                        option.value = appartement.id;
+                        option.textContent = appartement.libelle;
+                        appartementSelect.appendChild(option);
+                    });
+                }
+            });
         });
     </script>
 @endsection

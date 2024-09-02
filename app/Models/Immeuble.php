@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Immeuble extends Model
 {
@@ -21,5 +22,9 @@ class Immeuble extends Model
 
     public function proprietaire(){
         return $this->belongsTo(User::class);
+    }
+
+    public function visiteurs():HasManyThrough{
+        return $this->hasManyThrough(Visiteur::class, self::locataires());
     }
 }

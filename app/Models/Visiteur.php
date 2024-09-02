@@ -31,5 +31,9 @@ class Visiteur extends Model
         return $this->belongsTo(User::class, 'agent_id');
     }
 
+    public $timestamps = false;
 
+    public function immeuble(){
+        return $this->belongsTo(Immeuble::class);
+    }
 }

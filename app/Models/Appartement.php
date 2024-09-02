@@ -14,10 +14,14 @@ class Appartement extends Model
     ];
 
     public function user(){
-        return $this->hasOne(Appartement::class);
+        return $this->hasOne(User::class);
     }
 
     public function immeuble(){
         return $this->belongsTo(Immeuble::class);
+    }
+
+    public function locataire(){
+        return $this->hasOne(User::class);
     }
 }

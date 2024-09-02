@@ -24,7 +24,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            <button type="submit" class="btn btn-info">Ajouter</button>
+            <button type="submit" class="btn btn-info">Enregistrer</button>
             <button type="submit" class="btn btn-default float-right">Cancel</button>
         </div>
         <!-- /.card-footer -->
