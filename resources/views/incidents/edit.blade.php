@@ -1,18 +1,18 @@
 @extends('base',[
-    'title'=>'Ajouter un appartement'
-]);
-
+    'title'=>'Modifier un appartement'
+])
 @section('content')
     <section class="content">
         <div class="container-fluid">
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Ajouter un appartement</h3>
+                    <h3 class="card-title">Modifier mes informations</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                @include('appartements._form',[
-                    "action" => route('appartements.store'),
+                @include('incidents._form',[
+                    'action' => route('incidents.update',$appartement),
+                    'method' => true
                 ])
             </div>
         </div>

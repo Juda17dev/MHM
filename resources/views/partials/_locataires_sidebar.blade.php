@@ -37,20 +37,37 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                <li class="nav-item">
+                <li class="nav-item my-1">
                     <a href="{{ route('users.agents') }}" class="nav-link">
-                        <i class="nav-icon fas fa-user-check"></i>
+                        <i class="nav-icon fas fa-user-shield"></i>
                         <p>
                             Les agents
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+
+                <li class="nav-item my-1">
                     <a href="{{ route('visites.liste') }}" class="nav-link">
                         <i class="nav-icon fas fa-user-check"></i>
                         <p>
                             Mes visites
                         </p>
+                    </a>
+                </li>
+
+                <li class="nav-item my-1">
+                    <a href="{{ route('visiteurs.create') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>
+                            Soumettre une visite
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item my-1">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Signaler un incident</p>
                     </a>
                 </li>
             </ul>

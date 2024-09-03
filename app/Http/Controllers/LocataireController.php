@@ -16,5 +16,5 @@ class LocataireController extends Controller
     }
 
 
-    
+
 }

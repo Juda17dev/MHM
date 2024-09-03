@@ -29,19 +29,19 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
         if(Auth::user()->role_id == 3){
-            return to_route('proprietaires.index');
+            return to_route('immeubles.index');
         }
 
         if(Auth::user()->role_id == 2){
-            return to_route('locataires.index');
+            return to_route('visites.liste');
         }
 
         if(Auth::user()->role_id == 1){
-            return to_route('agents.index');
+            return to_route('visiteurs.liste');
         }
 
 
-        // return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
@@ -58,5 +58,5 @@ class AuthenticatedSessionController extends Controller
         return redirect('/');
     }
 
-    
+
 }

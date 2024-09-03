@@ -49,8 +49,31 @@
                     <a href="{{ route('visiteurs.liste') }}" class="nav-link">
                         <i class="nav-icon fas fa-user-check"></i>
                         <p>
-                            Liste des visites
+                            Liste des visiteurs
                         </p>
+                    </a>
+                </li>
+                <li class="nav-item my-1">
+                    <a href="{{ route('visiteurs.create') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>
+                            Soumettre une visite
+                        </p>
+                    </a>
+                </li>
+
+
+
+                <li class="nav-item my-1">
+                    <a href="{{ route('incidents.index') }}" class="nav-link">
+                        <i class="fas fa-exclamation nav-icon"></i>
+                        <p>Les incidents</p>
+                    </a>
+                </li>
+                <li class="nav-item my-1">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Signaler un incident</p>
                     </a>
                 </li>
             </ul>

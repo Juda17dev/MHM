@@ -1,5 +1,5 @@
 @extends('base',[
-    'title'=>'Ajouter un appartement'
+    'title'=>'Ajouter un incident'
 ]);
 
 @section('content')
@@ -11,8 +11,8 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                @include('appartements._form',[
-                    "action" => route('appartements.store'),
+                @include('incidents._form',[
+                    "action" => route('incidents.store'),
                 ])
             </div>
         </div>

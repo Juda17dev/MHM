@@ -23,9 +23,6 @@
                 <div class="col-12">
 
                     <div class="card">
-                        <div class="card-footer">
-                            <a href="{{ route('users.create') }}" class="btn btn-info float-right">Ajouter</a>
-                        </div>
                         <div class="card-header">
                             <h3 class="card-title">Liste des agents</h3>
                         </div>
@@ -34,45 +31,52 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>Email</th>
-                                        <th>Téléphone</th>
-                                        <th>Action</th>
+                                        <th>Agents</th>
+                                        <th style="width: 5px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($agents as $agent)
                                         <tr>
-                                            <td>{{ $agent->nom }}</td>
-                                            <td>{{ $agent->prenom }}</td>
-                                            <td>{{ $agent->email }}</td>
-                                            <td>{{ $agent->telephone }}</td>
+                                            <td>{{ $agent->nom.' '.$agent->prenom }}</td>
                                             <td>
-                                                <a href="{{ route('users.edit', $agent) }}"
-                                                    class="btn btn-sidebar"><i class="fa fa-pen"></i></a>
-                                                <form method="POST" action="{{ route('users.destroy', $agent) }}" class="btn btn-sidebar">
-                                                    @csrf @method('delete')
-                                                    <button type="submit" class="btn btn-sidebar float-right"><i class="fa fa-trash"></i></button>
-                                                </form>
+                                                <div class="nav-item dropdown-menu-left " style="height: 2px;">
+                                                    <a class="nav-link" data-toggle="dropdown" href="#">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-xl-left">
+                                                        <a href="{{ route('users.edit', $agent) }}"
+                                                            class="dropdown-item">
+                                                            <i class="fa fa-edit"></i> Modifier
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <form method="POST"
+                                                            action="{{ route('users.destroy', $agent) }}"
+                                                            style="display: inline;">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="dropdown-item text-danger">
+                                                                <i class="fa fa-trash"></i> Supprimer
+                                                            </button>
+                                                        </form>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#"
+                                                            class="dropdown-item">
+                                                            <i class="fa fa-eye"></i> Détail
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>Email</th>
-                                        <th>Téléphone</th>
+                                        <th>Agent</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <a href="{{ route('users.create') }}" class="btn btn-info float-right">Ajouter</a>
                         </div>
                     </div>
                     <!-- /.card -->

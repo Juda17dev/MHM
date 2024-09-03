@@ -3,11 +3,13 @@
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\Appartementcontroller;
 use App\Http\Controllers\Immeublecontroler;
+use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\LocataireController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Proprietairecontroller;
 use App\Http\Controllers\Usercontroller;
 use App\Http\Controllers\Visiteurcontroller;
+use App\Models\Incident;
 use Illuminate\Support\Facades\Route;
 
 use function Pest\Laravel\get;
@@ -30,6 +32,8 @@ use function Pest\Laravel\get;
 // Route::get('/', function() {
 //     return view('index');
 // });
+
+Route::get('/users/profile', [Usercontroller::class, 'profile'])->name('users.profile');
 
 Route::get('/visiteurs/liste des visiteurs', [Visiteurcontroller::class, 'listeVisiteursParAgent'])->name('visiteurs.liste');
 
@@ -62,6 +66,9 @@ Route:: resource('immeubles',Immeublecontroler::class);
 
 
 Route:: resource('visiteurs', Visiteurcontroller::class);
+
+
+Route:: resource('incidents', IncidentController::class);
 
 
 Route::get('/', function () {

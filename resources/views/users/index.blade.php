@@ -25,7 +25,7 @@
                             <a href="{{ route('users.create') }}" class="btn btn-info float-right">Ajouter</a>
                         </div>
                         <div class="card-header">
-                            <h3 class="card-title">Liste des utilisateurs</h3>
+                            <h3 class="card-title">Liste des résidants</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -41,13 +41,15 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $user)
+                                        @foreach ($user->residants as $user)
                                         <tr>
-                                            <td>{{ $user->nom }}</td>
-                                            <td>{{ $user->prenom }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->telephone }}</td>
-                                            <td>{{ $user->role->libelle }}</td>
+                                            <td>{{ $user->residants->nom }}</td>
+                                            <td>{{ $user->residants->prenom }}</td>
+                                            <td>{{ $user->residants->email }}</td>
+                                            <td>{{ $user->residants->telephone }}</td>
+                                            <td>{{ $user->residants->role->libelle }}</td>
                                         </tr>
+                                        @endforeach
                                     @endforeach
                                 </tbody>
                                 <tfoot>

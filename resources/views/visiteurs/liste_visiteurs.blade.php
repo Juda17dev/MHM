@@ -22,6 +22,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-footer">
+                            <a href="{{ route('visiteurs.create') }}" class="btn btn-info float-right">Nouveau</a>
+                        </div>
                         <div class="card-header">
                             <h3 class="card-title">listes des visiteurs</h3>
                         </div>
@@ -30,34 +33,58 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>identite</th>
-                                        <th>Locataire</th>
+                                        <th>Visiteurs</th>
                                         <th>Statut</th>
+                                        <th style="width: 5px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($visiteurs as $visiteur)
                                         <tr>
-                                            <td>{{ $visiteur->nom }}</td>
-                                            <td>{{ $visiteur->prenom }}</td>
-                                            <td>{{ $visiteur->identite }}</td>
-                                            <td>{{ $visiteur->locataire->nom . ' ' . $visiteur->locataire->prenom }}</td>
+                                            <td>{{ $visiteur->nom.' '.$visiteur->prenom }}</td>
                                             <td>{{ $visiteur->statut }}</td>
+                                            <td>
+                                                <div class="nav-item dropdown-menu-left " style="height: 2px;">
+                                                    <a class="nav-link" data-toggle="dropdown" href="#">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-xl-left">
+                                                        <a href="#"
+                                                            class="dropdown-item">
+                                                            <i class="fa fa-edit"></i> Modifier
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <form method="POST"
+                                                            action="#"
+                                                            style="display: inline;">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="dropdown-item text-danger">
+                                                                <i class="fa fa-trash"></i> Supprimer
+                                                            </button>
+                                                        </form>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="{{ route('visiteurs.show', $visiteur) }}"
+                                                            class="dropdown-item">
+                                                            <i class="fa fa-eye"></i> Détail
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>identite</th>
-                                        <th>Locataire</th>
+                                        <th>Visiteurs</th>
                                         <th>Statut</th>
+                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ route('visiteurs.create') }}" class="btn btn-info float-right">Nouveau</a>
                         </div>
                         <!-- /.card-body -->
                     </div>

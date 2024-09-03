@@ -38,7 +38,7 @@ class Proprietairecontroller extends Controller
     // >whereProprietaire(User)-
 
     public function getAcceptedVisites($year){
-        $nbrAccepted = Visiteur::query() 
+        $nbrAccepted = Visiteur::query()
         ->whereRelation('locataire.immeubles', function($builder){
             $builder->where('user_id',auth()->id());
         })
@@ -56,7 +56,7 @@ class Proprietairecontroller extends Controller
         foreach ($parMois as $mois => $count) {
             $data[$mois] = $count;
         }
-    
+
         return $data;
     }
 
@@ -81,7 +81,7 @@ class Proprietairecontroller extends Controller
         foreach ($parMois as $mois => $count) {
             $data[$mois] = $count;
         }
-    
+
         return $data;
     }
 
@@ -117,6 +117,6 @@ class Proprietairecontroller extends Controller
 
         Auth::login($user);
 
-        return redirect('proprietaires')->with('user',$user);
+        return redirect('immeubles')->with('user',$user);
     }
 }

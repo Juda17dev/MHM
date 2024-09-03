@@ -27,4 +27,5 @@ class Immeuble extends Model
     public function visiteurs():HasManyThrough{
         return $this->hasManyThrough(Visiteur::class, self::locataires());
     }
+
 }

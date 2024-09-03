@@ -70,19 +70,24 @@ class User extends Authenticatable
         return $this->belongsTo(Appartement::class);
     }
 
+    public function residants(){
+        return $this->hasManyThrough(static::class, Immeuble::class);
+    }
 
 
 
 
-    
-
-    // public static function locataires() : Collection {
-    //     return self::query()->where('role_id', self::LOCATAIRE)->get();
-    // }
-
-    // public static function agents() : Collection {
-    //     return self::query()->where('role_id', self::AGENT)->get();
-    // }
 
 
+    public static function locataires() : Collection {
+        return self::query()->where('role_id', self::LOCATAIRE)->get();
+    }
+
+    public static function agents() : Collection {
+        return self::query()->where('role_id', self::AGENT)->get();
+    }
+
+    public function incidents(){
+        return $this->hasMany(Incident::class);
+    }
 }

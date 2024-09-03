@@ -7,7 +7,7 @@
 
         <li class="nav-item d-none d-sm-inline-block">
             <a href="
-                @if (Auth::user()->role_id == 3) {{ route('proprietaires.index') }} @elseif (Auth::user()->role_id == 2){{ route('locataires.index') }} @elseif (Auth::user()->role_id == 1){{ route('agents.index') }} @endif "
+                @if (Auth::user()->role_id == 3) {{ route('immeubles.index') }} @elseif (Auth::user()->role_id == 2){{ route('visites.liste') }} @elseif (Auth::user()->role_id == 1){{ route('visiteurs.liste') }} @endif "
                 class="nav-link">Home
             </a>
         </li>
@@ -53,7 +53,7 @@
                 <i class="fas fa-user"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"> </i>Profile</a>
+                <a class="dropdown-item" href="{{ route('users.profile') }}"><i class="fas fa-user mr-2"> </i>Profile</a>
                 <div class="dropdown-divider"></div>
 
                 <form action="{{ route('logout') }}" method="POST">

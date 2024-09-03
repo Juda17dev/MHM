@@ -15,7 +15,7 @@ class Usercontroller extends Controller
 {
     public function index():View
     {
-        $users = User::all();
+        $users = User::query()->whereNot('role_id', User::PROPRIETAIRE)->get();
         return view('users.index')->with('users' ,$users);
     }
 
@@ -70,6 +70,17 @@ class Usercontroller extends Controller
         return redirect('users');
     }
 
+    public function show(User $user):View{
+        return view('users.show')->with('user', $user);
+    }
+
+
+    public function profile():View{
+        $user = Auth::user();
+        return view('users.profile')->with('user', $user);
+    }
+
+
     // public function edit($id):View
     // {
     //     $user = User::find($id);
@@ -101,11 +112,15 @@ class Usercontroller extends Controller
 
 
     public function listeLocataires():View{
-        return view('locataires.liste')->with('locataires',User::locataires());
+        $user = Auth::user();
+        $locataires = User::locataires()->where('immeuble_id', $user->immeuble_id);
+        return view('locataires.liste')->with('locataires',$locataires);
     }
 
 
     public function listeAgents():View{
-        return view('agents.liste')->with('agents', User::agents());
+        $user = Auth::user();
+        $agents = User::agents()->where('immeuble_id', $user->immeuble_id);
+        return view('agents.liste')->with('agents', $agents);
     }
 }

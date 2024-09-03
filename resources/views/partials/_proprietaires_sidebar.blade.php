@@ -42,31 +42,50 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="#!" class="nav-link">
+                {{-- <li class="nav-item mx-2">
+                    <a href="{{ route('immeubles.index') }}" class="nav-link">
                         <i class="nav-icon fa fa-building"></i>
-                        <p>
-                            Immeubles
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                        <p>Immeubles</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('immeubles.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Liste des immeubles</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('immeubles.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ajouter un immeuble</p>
-                            </a>
-                        </li>
-                    </ul>
+                </li> --}}
+                <li class="nav-item mx-2">
+                    <a href="{{ route('immeubles.create') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Ajouter un immeuble</p>
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="{{ route('appartements.create') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Ajouter un appartement</p>
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="{{ route('users.create') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Ajouter un locataire</p>
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="{{ route('users.create') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Ajouter un agent</p>
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="{{ route('users.index') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Tes résidants</p>
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Faire une annonce</p>
+                    </a>
                 </li>
 
-                <li class="nav-item menu-open ">
+                {{-- <li class="nav-item menu-open ">
                     <a href="#!" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
@@ -81,16 +100,11 @@
                                 <p>Liste des appartements</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('appartements.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ajouter un appartement</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="nav-item menu-open">
+                    </ul>
+                </li> --}}
+
+                {{-- <li class="nav-item menu-open">
                     <a href="#!" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
@@ -105,16 +119,11 @@
                                 <p>Liste des locataires</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('users.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ajouter un locataire</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="nav-item  menu-open ">
+                    </ul>
+                </li> --}}
+
+                {{-- <li class="nav-item  menu-open ">
                     <a href="#!" class="nav-link ">
                         <i class="nav-icon fas fa-user-shield"></i>
                         <p>
@@ -129,23 +138,18 @@
                                 <p>Liste des agents</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('users.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ajouter un agent</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="nav-item">
+                    </ul>
+                </li> --}}
+
+                {{-- <li class="nav-item">
                     <a href="{{ route('visiteurs.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-user-check"></i>
                         <p>
                             Visiteurs
                         </p>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

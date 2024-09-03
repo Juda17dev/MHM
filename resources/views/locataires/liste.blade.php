@@ -21,9 +21,6 @@
                 <div class="col-12">
 
                     <div class="card">
-                        <div class="card-footer">
-                            <a href="{{ route('users.create') }}" class="btn btn-info float-right">Ajouter</a>
-                        </div>
                         <div class="card-header">
                             <h3 class="card-title">Liste des locataires</h3>
                         </div>
@@ -32,20 +29,14 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>Email</th>
-                                        <th>Téléphone</th>
-                                        <th>Action</th>
+                                        <th>Locataires</th>
+                                        <th style="width: 5px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($locataires as $locataire)
                                         <tr>
-                                            <td>{{ $locataire->nom }}</td>
-                                            <td>{{ $locataire->prenom }}</td>
-                                            <td>{{ $locataire->email }}</td>
-                                            <td>{{ $locataire->telephone }}</td>
+                                            <td>{{ $locataire->nom.'   '.$locataire->prenom }}</td>
                                             <td>
                                                 <div class="nav-item dropdown-menu-left " style="height: 2px;">
                                                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -67,7 +58,7 @@
                                                             </button>
                                                         </form>
                                                         <div class="dropdown-divider"></div>
-                                                        <a href="#"
+                                                        <a href="{{ route('users.show', $locataire) }}"
                                                             class="dropdown-item">
                                                             <i class="fa fa-eye"></i>  Détail
                                                         </a>
@@ -79,18 +70,11 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>Email</th>
-                                        <th>Téléphone</th>
+                                        <th>Locataire</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <a href="{{ route('users.create') }}" class="btn btn-info float-right">Ajouter</a>
                         </div>
                     </div>
                     <!-- /.card -->
